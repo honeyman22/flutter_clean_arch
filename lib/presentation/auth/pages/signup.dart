@@ -108,12 +108,31 @@ class _SigninScreenState extends State<SigninScreen> {
                       builder: (context, state) {
                     if (state is ButtonStateLoading) {
                       return PrimaryButton(
-                          text: "Sign Up", isLoading: true, onPressed: () {});
+                          text: "Sign Up",
+                          isLoading: true,
+                          onPressed: () {
+                            context.read<ButtonStateCubit>().excute(
+                                usecase: sl<SignupUseCase>(),
+                                params: SignupReqParams(
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
+                                  name: _nameController.text,
+                                ));
+                          });
                     }
 
                     if (state is ButtonStateError) {
                       return PrimaryButton(
-                          text: "hello Error", onPressed: () {});
+                          text: "hello Error",
+                          onPressed: () {
+                            context.read<ButtonStateCubit>().excute(
+                                usecase: sl<SignupUseCase>(),
+                                params: SignupReqParams(
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
+                                  name: _nameController.text,
+                                ));
+                          });
                     }
                     return PrimaryButton(
                         text: "Sign Up",
@@ -121,9 +140,9 @@ class _SigninScreenState extends State<SigninScreen> {
                           context.read<ButtonStateCubit>().excute(
                               usecase: sl<SignupUseCase>(),
                               params: SignupReqParams(
-                                email: "email",
-                                password: "password",
-                                name: "name",
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                                name: _nameController.text,
                               ));
                         });
                   }),

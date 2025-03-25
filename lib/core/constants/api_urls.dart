@@ -1,4 +1,4 @@
 class ApiUrls {
-  static const baseURL = "https://devapi.annapurnagalleries.com/api/";
-  static const register = "${baseURL}suppliers/login";
+  static const baseURL = "https://backend-appointments.onrender.com/api/v1";
+  static const register = "${baseURL}/register";
 }
