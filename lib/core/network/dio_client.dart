@@ -7,7 +7,7 @@ class DioClient {
       headers: {
         'Content-Type': 'application/json',
       },
-      baseUrl: 'https://jsonplaceholder.typicode.com/',
+      baseUrl: 'https://backend-appointments.onrender.com/api/v1',
       responseType: ResponseType.json,
       sendTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
@@ -25,7 +25,10 @@ class DioClient {
 
   Future<Response> post(String url, {data}) async {
     try {
-      final Response response = await _dio.post(url, data: data);
+      final Response response =
+          await _dio.post(url, data: data).catchError((onError) {
+        print(onError);
+      });
       return response;
     } on DioException {
       rethrow;
